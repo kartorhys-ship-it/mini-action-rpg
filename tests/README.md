@@ -45,3 +45,9 @@ Run the dungeon layout integration test with:
 ```powershell
 .\run-godot.ps1 --headless --script res://tests/test_dungeon_layout.gd
 ```
+
+Run the boss encounter integration test with:
+
+```powershell
+.\run-godot.ps1 --headless --script res://tests/test_boss.gd
+```

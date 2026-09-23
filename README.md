@@ -4,7 +4,7 @@ A small 2D top-down action RPG built as a controlled experiment in AI-assisted G
 
 ## Current status
 
-The main scene now contains a connected three-area dungeon: Entry, Slime Den, and a Boss Room placeholder. Player movement, health/HUD, sword attack, training dummy, a chasing/contact-damaging slime, a health potion, and a slime gold drop/counter are implemented. Automated tests cover room passages, combat, and pickups; visual dungeon readability and gameplay feel still need user playtesting.
+The main scene now contains connected Entry, Slime Den, and Boss Room areas. The Boss Room contains a 300-HP Large Slime; defeating it displays `YOU WIN`. Player movement, health/HUD, sword attack, training dummy, normal slime combat, health potion, and gold drop/counter are implemented. Automated tests cover boss combat, room passages, and pickups; boss difficulty and visual readability still need user playtesting.
 
 The project launches into a placeholder dungeon room with an enclosed player body, a stationary training dummy, a chasing slime, a health potion, a player health bar, a gold counter, and camera. Use WASD or the arrow keys to move, Space to swing the sword, defeat the slime, and walk into its coin to collect 1 gold. Walk into the `HEAL +30` potion while injured to restore health; at full health it remains available. The dummy and slime show their own health above them. See the feature Work Records for verification details and limits.
 

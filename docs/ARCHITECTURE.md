@@ -70,6 +70,7 @@ Avoid Autoloads during the early milestones. Use direct scene references, signal
 - The slime uses a scene-supplied NodePath to the player and direct distance-based pursuit, stopping at contact range. Its ContactArea applies tuned damage on contact with a cooldown through the player's public `receive_damage(amount)` boundary; the player delegates to its HealthComponent.
 - The health HUD connects to the player's `health_changed` signal and displays current/maximum health as text and a bar; it does not mutate health.
 - The HealthPotion owns its touch area and is consumed only after the player's `receive_healing(amount)` boundary reports an effective heal. The player delegates to HealthComponent, which owns healing and maximum-health clamping.
+- The Large Slime reuses the Slime scene with tuned boss stats; Main observes its HealthComponent's `died` signal and reveals the `YOU WIN` label. The boss scene does not configure the normal slime's gold-drop scene.
 - The HUD observes the player and game-state signals.
 - Pickups own their collection behavior and notify the relevant gameplay system.
 

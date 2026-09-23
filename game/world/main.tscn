@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3]
+[gd_scene load_steps=16 format=3]
 
 [ext_resource type="Script" path="res://game/world/main.gd" id="1_world"]
 [ext_resource type="Script" path="res://game/player/player.gd" id="2_player"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" path="res://game/ui/gold_counter.gd" id="8_gold_counter"]
 [ext_resource type="Script" path="res://game/ui/health_hud.gd" id="9_health_hud"]
 [ext_resource type="PackedScene" path="res://game/items/health_potion.tscn" id="10_health_potion"]
+[ext_resource type="PackedScene" path="res://game/enemies/boss_slime.tscn" id="11_boss_slime"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_player"]
 size = Vector2(22, 28)
@@ -42,6 +43,10 @@ gold_drop_scene = ExtResource("6_gold_pickup")
 
 [node name="HealthPotion" parent="." instance=ExtResource("10_health_potion")]
 position = Vector2(560, 400)
+
+[node name="BossSlime" parent="." instance=ExtResource("11_boss_slime")]
+position = Vector2(810, 270)
+target_path = NodePath("../Player")
 
 [node name="Placeholder" type="Polygon2D" parent="Player"]
 polygon = PackedVector2Array(-11, 12, 0, -16, 11, 12)
@@ -154,6 +159,20 @@ offset_right = 220.0
 offset_bottom = 44.0
 max_value = 100.0
 show_percentage = false
+
+[node name="VictoryLabel" type="Label" parent="CanvasLayer"]
+visible = false
+offset_left = 260.0
+offset_top = 218.0
+offset_right = 700.0
+offset_bottom = 286.0
+theme_override_colors/font_color = Color(1, 0.86, 0.29, 1)
+theme_override_colors/font_outline_color = Color(0.05, 0.04, 0.03, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 48
+text = "YOU WIN"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="died" from="Player/HealthComponent" to="Player" method="_on_health_component_died"]
 [connection signal="body_entered" from="Player/AttackArea" to="Player" method="_on_attack_area_body_entered"]

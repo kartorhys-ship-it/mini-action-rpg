@@ -11,6 +11,13 @@ const ROOM_LABEL_COLOR: Color = Color(0.78, 0.82, 0.84, 1.0)
 const DOORWAY_COLOR: Color = Color(0.62, 0.53, 0.31, 1.0)
 const GRID_SPACING: float = 48.0
 
+@onready var _boss_health_component: Node = $BossSlime/HealthComponent
+@onready var _victory_label: Label = $CanvasLayer/VictoryLabel
+
+
+func _ready() -> void:
+	_boss_health_component.connect(&"died", _on_boss_defeated)
+
 
 func _draw() -> void:
 	draw_rect(Rect2(Vector2.ZERO, ROOM_SIZE), FLOOR_COLOR, true)
@@ -42,4 +49,9 @@ func _draw() -> void:
 	draw_string(room_font, Vector2(126.0, 82.0), "ENTRY", HORIZONTAL_ALIGNMENT_LEFT, -1.0, 16, ROOM_LABEL_COLOR)
 	draw_string(room_font, Vector2(443.0, 82.0), "SLIME DEN", HORIZONTAL_ALIGNMENT_LEFT, -1.0, 16, ROOM_LABEL_COLOR)
 	draw_string(room_font, Vector2(750.0, 82.0), "BOSS ROOM", HORIZONTAL_ALIGNMENT_LEFT, -1.0, 16, ROOM_LABEL_COLOR)
-	draw_string(room_font, Vector2(770.0, 106.0), "COMING SOON", HORIZONTAL_ALIGNMENT_LEFT, -1.0, 12, ROOM_LABEL_COLOR)
+	draw_string(room_font, Vector2(776.0, 106.0), "FINAL FIGHT", HORIZONTAL_ALIGNMENT_LEFT, -1.0, 12, ROOM_LABEL_COLOR)
+
+
+func _on_boss_defeated() -> void:
+	_victory_label.visible = true
+	get_tree().paused = true

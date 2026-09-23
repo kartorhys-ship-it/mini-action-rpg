@@ -24,7 +24,7 @@ The game is built in vertical slices. Each milestone should launch, be checked, 
 9. [ ] Gold drops and gold counter — implementation and integration test pass; graphical playtest pending (see `features/gold_drops/WORK_RECORD.md`).
 10. [ ] Health potion — implementation and integration tests pass; graphical visibility/pickup playtest pending (see `features/health_potion/WORK_RECORD.md`).
 11. [ ] Dungeon layout — implementation and movement checks in progress (see `features/dungeon_layout/WORK_RECORD.md`).
-12. [ ] Boss
+12. [ ] Boss — implementation and automated encounter checks pass; graphical boss fight pending (see `features/boss/WORK_RECORD.md`).
 13. [ ] Game-over flow
 14. [ ] Victory flow
 

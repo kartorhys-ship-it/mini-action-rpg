@@ -27,4 +27,4 @@ Limitations and unknowns: Boss Room is only a labeled destination placeholder. T
 
 Statuses: Implementation complete; automated and graphical verification passed; human explanation pending; work open; release not requested.
 
-Next action and owner: Commit and push this verified dungeon-layout slice — assistant, authorized by the user's request to proceed with the project milestone.
+Next action and owner: None. Verified layout was committed and pushed as `78ce2eb` (`feat: add connected dungeon rooms`).

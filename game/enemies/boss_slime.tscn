@@ -1,0 +1,50 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="PackedScene" path="res://game/enemies/slime.tscn" id="1_slime"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_boss"]
+radius = 19.0
+height = 42.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_boss_contact"]
+radius = 30.0
+
+[node name="BossSlime" instance=ExtResource("1_slime")]
+movement_speed = 120.0
+detection_range = 160.0
+stopping_distance = 40.0
+contact_damage = 20.0
+contact_damage_interval = 1.5
+display_name = "LARGE SLIME"
+defeated_text = "BOSS DEFEATED"
+retain_aggro_after_detection = true
+room_boundaries = PackedFloat32Array(300, 690)
+room_doorway_y = 270.0
+waypoint_clearance = 60.0
+
+[node name="SlimeArt" parent="." index="1"]
+scale = Vector2(1.6, 1.6)
+
+[node name="Body" parent="SlimeArt" index="1"]
+color = Color(0.61, 0.28, 0.82, 1)
+
+[node name="Crest" type="Polygon2D" parent="SlimeArt"]
+position = Vector2(0, -11)
+polygon = PackedVector2Array(-16, -4, -13, -17, -6, -8, 0, -23, 6, -8, 13, -17, 16, -4, 10, 0, -10, 0)
+color = Color(0.28, 0.1, 0.4, 1)
+
+[node name="HealthLabel" parent="." index="2"]
+offset_left = -120.0
+offset_top = -74.0
+offset_right = 120.0
+offset_bottom = -50.0
+theme_override_font_sizes/font_size = 16
+
+[node name="CollisionShape2D" parent="." index="0"]
+shape = SubResource("CapsuleShape2D_boss")
+
+[node name="HealthComponent" parent="." index="3"]
+maximum_health = 300.0
+
+[node name="CollisionShape2D" parent="ContactArea" index="0"]
+shape = SubResource("CircleShape2D_boss_contact")

@@ -11,6 +11,9 @@ func _run_test() -> void:
 	var main_scene: Node2D = MAIN_SCENE.instantiate() as Node2D
 	var player: CharacterBody2D = main_scene.get_node("Player") as CharacterBody2D
 	var slime: CharacterBody2D = main_scene.get_node("Slime") as CharacterBody2D
+	var boss: CharacterBody2D = main_scene.get_node("BossSlime") as CharacterBody2D
+	boss.set_physics_process(false)
+	(boss.get_node("ContactArea") as Area2D).monitoring = false
 	player.position = Vector2(620.0, 270.0)
 	slime.position = Vector2(650.0, 270.0)
 	root.add_child(main_scene)
