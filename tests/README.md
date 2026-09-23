@@ -39,3 +39,9 @@ Run the health potion integration test with:
 ```powershell
 .\run-godot.ps1 --headless --script res://tests/test_health_potion.gd
 ```
+
+Run the dungeon layout integration test with:
+
+```powershell
+.\run-godot.ps1 --headless --script res://tests/test_dungeon_layout.gd
+```

@@ -61,6 +61,7 @@ Avoid Autoloads during the early milestones. Use direct scene references, signal
 ## Scene ownership
 
 - The main scene owns the current level and top-level game flow.
+- `main.gd` draws the three room floors/labels, while `main.tscn` owns the four interior partition colliders and camera limits; both doorways are centered on the slime's direct pursuit route.
 - The player node owns player-local behavior. Keep a simple behavior on its script until a real reuse need justifies extracting a component.
 - The player owns its HealthComponent; health values stay in that component and interested systems observe its signals.
 - The player owns its attack area. It detects targets on collision layer 4 and calls their public `receive_damage(amount)` method once per swing; targets own their own health.
