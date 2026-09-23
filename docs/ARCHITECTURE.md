@@ -1,0 +1,73 @@
+# Architecture
+
+## Guiding approach
+
+The project uses small, composable Godot scenes and scripts. Gameplay behavior belongs to the relevant scene or component, while independent systems communicate through signals.
+
+The architecture is deliberately modest for V0.1. It should be easy to understand before it becomes easy to extend.
+
+## Planned high-level layout
+
+```text
+GAME
+├── Player
+│   ├── MovementComponent
+│   ├── HealthComponent
+│   └── CombatComponent
+├── Enemies
+│   ├── HealthComponent
+│   ├── MovementComponent
+│   ├── CombatComponent
+│   └── EnemyAI
+├── World
+│   ├── Main scene
+│   ├── Dungeon layout
+│   └── Spawn locations
+├── Items
+│   ├── GoldPickup
+│   └── HealthPotion
+├── UI
+│   ├── Health bar
+│   └── Gold counter
+└── Systems
+    └── Game state and scene flow, only where needed
+```
+
+## Communication boundaries
+
+Health owns health values and emits signals such as:
+
+```text
+health_changed(current, maximum)
+died
+```
+
+The HUD observes those signals. Combat requests damage through a health component interface. The HUD does not modify health directly.
+
+Enemy death emits or triggers a drop request. The player collects pickups through their collision/interaction boundary. Gold changes are observed by the gold counter.
+
+## Data and behavior
+
+Behavior belongs in scripts. Tunable values such as movement speed, health, damage, attack cooldown, and drop value should move into typed exported properties or Resources when the feature needs reusable configuration.
+
+Do not create a data framework before a feature requires one.
+
+## Global state
+
+Avoid Autoloads during the early milestones. Use direct scene references, signals, and parent-child ownership first. A global system may be introduced only when its lifetime and responsibility are genuinely project-wide and the decision is documented.
+
+## Scene ownership
+
+- The main scene owns the current level and top-level game flow.
+- The player scene owns player-local components.
+- Enemy scenes own enemy-local components and AI.
+- The HUD observes the player and game-state signals.
+- Pickups own their collection behavior and notify the relevant gameplay system.
+
+## Constraints for AI-assisted changes
+
+- Work within one feature boundary per task.
+- Inspect existing scenes and scripts before editing.
+- Prefer additive, local changes.
+- Do not replace an existing working system with a new pattern without explaining the reason.
+- Keep architecture documentation current when ownership or communication boundaries change.
