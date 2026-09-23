@@ -1,9 +1,13 @@
-[gd_scene load_steps=8 format=3]
+[gd_scene load_steps=12 format=3]
 
 [ext_resource type="Script" path="res://game/world/main.gd" id="1_world"]
 [ext_resource type="Script" path="res://game/player/player.gd" id="2_player"]
 [ext_resource type="Script" path="res://game/player/health_component.gd" id="3_health"]
 [ext_resource type="PackedScene" path="res://game/enemies/training_dummy.tscn" id="4_dummy"]
+[ext_resource type="PackedScene" path="res://game/enemies/slime.tscn" id="5_slime"]
+[ext_resource type="PackedScene" path="res://game/items/gold_pickup.tscn" id="6_gold_pickup"]
+[ext_resource type="Script" path="res://game/player/gold_component.gd" id="7_gold_component"]
+[ext_resource type="Script" path="res://game/ui/gold_counter.gd" id="8_gold_counter"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_player"]
 size = Vector2(22, 28)
@@ -26,6 +30,11 @@ script = ExtResource("2_player")
 [node name="TrainingDummy" parent="." instance=ExtResource("4_dummy")]
 position = Vector2(480, 330)
 
+[node name="Slime" parent="." instance=ExtResource("5_slime")]
+position = Vector2(650, 270)
+target_path = NodePath("../Player")
+gold_drop_scene = ExtResource("6_gold_pickup")
+
 [node name="Placeholder" type="Polygon2D" parent="Player"]
 polygon = PackedVector2Array(-11, 12, 0, -16, 11, 12)
 color = Color(0.25, 0.78, 0.95, 1)
@@ -35,6 +44,9 @@ shape = SubResource("RectangleShape2D_player")
 
 [node name="HealthComponent" type="Node" parent="Player"]
 script = ExtResource("3_health")
+
+[node name="GoldComponent" type="Node" parent="Player"]
+script = ExtResource("7_gold_component")
 
 [node name="AttackArea" type="Area2D" parent="Player"]
 position = Vector2(0, 24)
@@ -75,6 +87,21 @@ shape = SubResource("RectangleShape2D_wall")
 position = Vector2(928, 270)
 rotation = 1.5708
 shape = SubResource("RectangleShape2D_wall")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="GoldCounter" type="Label" parent="CanvasLayer"]
+offset_left = 20.0
+offset_top = 16.0
+offset_right = 180.0
+offset_bottom = 44.0
+theme_override_colors/font_color = Color(1, 0.84, 0.25, 1)
+theme_override_colors/font_outline_color = Color(0.05, 0.04, 0.03, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 18
+text = "GOLD: 0"
+script = ExtResource("8_gold_counter")
+gold_component_path = NodePath("../../Player/GoldComponent")
 
 [connection signal="died" from="Player/HealthComponent" to="Player" method="_on_health_component_died"]
 [connection signal="body_entered" from="Player/AttackArea" to="Player" method="_on_attack_area_body_entered"]

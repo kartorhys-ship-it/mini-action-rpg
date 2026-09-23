@@ -12,7 +12,7 @@ Reach the end of a small dungeon and defeat the boss.
 
 - WASD movement.
 - Eight-direction movement.
-- Left mouse button: basic sword attack.
+- Space: basic sword attack (current project binding).
 - 100 maximum health.
 - Health potion restores 30 health.
 - The player dies when health reaches zero.

@@ -16,6 +16,7 @@ GAME
 │   └── Sword attack behavior (`game/player/player.gd`, implemented)
 ├── Enemies
 │   ├── TrainingDummy (`game/enemies/training_dummy.tscn`, stationary combat test target)
+│   ├── Slime (`game/enemies/slime.tscn`, implemented direct pursuit)
 │   ├── HealthComponent
 │   ├── MovementComponent
 │   ├── CombatComponent
@@ -65,6 +66,7 @@ Avoid Autoloads during the early milestones. Use direct scene references, signal
 - The player owns its attack area. It detects targets on collision layer 4 and calls their public `receive_damage(amount)` method once per swing; targets own their own health.
 - Enemy scenes own enemy-local components and AI.
 - The training dummy is a static body on physics layer 4. It owns a HealthComponent and displays its health by observing `health_changed`; the player's attack calls its public `receive_damage(amount)` method.
+- The slime uses a scene-supplied NodePath to the player and direct distance-based pursuit, stops at a separation, and uses the same HealthComponent and damage-receiver contract. Contact damage is owned by the later Enemy Combat milestone.
 - The HUD observes the player and game-state signals.
 - Pickups own their collection behavior and notify the relevant gameplay system.
 

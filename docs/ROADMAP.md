@@ -18,10 +18,10 @@ The game is built in vertical slices. Each milestone should launch, be checked, 
 3. [ ] Player health — implementation is in place; damage/heal behavior and death signal checks are pending until there is a caller (see `features/player_health/WORK_RECORD.md`).
 4. [ ] Basic sword attack — implementation and headless launch checks are in place; facing, visual timing, and input need an interactive playtest (see `features/sword_attack/WORK_RECORD.md`).
 5. [ ] Training dummy — implementation and automated sword-hit check passed; user visual playtest pending (see `features/training_dummy/WORK_RECORD.md`).
-6. [ ] Slime AI
+6. [ ] Slime AI — implementation and deterministic chase/defeat tests pass; live playtest pending (see `features/slime_ai/WORK_RECORD.md`).
 7. [ ] Enemy combat
 8. [ ] Health HUD
-9. [ ] Gold drops and gold counter
+9. [ ] Gold drops and gold counter — implementation and integration test pass; graphical playtest pending (see `features/gold_drops/WORK_RECORD.md`).
 10. [ ] Health potion
 11. [ ] Dungeon layout
 12. [ ] Boss
