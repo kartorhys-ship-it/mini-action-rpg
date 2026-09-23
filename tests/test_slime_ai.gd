@@ -33,7 +33,7 @@ func _run_test() -> void:
 		push_error("The slime should move toward the player after they enter detection range.")
 		quit(1)
 		return
-	if distance_to_player < 38.0 or distance_to_player > 44.0:
+	if distance_to_player < 32.0 or distance_to_player > 38.0:
 		push_error("The slime should stop near its configured separation; actual distance %.1f." % distance_to_player)
 		quit(1)
 		return

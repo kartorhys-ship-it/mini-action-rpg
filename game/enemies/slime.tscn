@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3]
+[gd_scene load_steps=5 format=3]
 
 [ext_resource type="Script" path="res://game/enemies/slime.gd" id="1_slime"]
 [ext_resource type="Script" path="res://game/player/health_component.gd" id="2_health"]
@@ -7,13 +7,18 @@
 radius = 13.0
 height = 28.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_contact"]
+radius = 22.0
+
 [node name="Slime" type="CharacterBody2D"]
 collision_layer = 4
 collision_mask = 1
 script = ExtResource("1_slime")
 movement_speed = 90.0
 detection_range = 180.0
-stopping_distance = 38.0
+stopping_distance = 32.0
+contact_damage = 10.0
+contact_damage_interval = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_slime")
@@ -65,3 +70,10 @@ vertical_alignment = 1
 [node name="HealthComponent" type="Node" parent="."]
 script = ExtResource("2_health")
 maximum_health = 30.0
+
+[node name="ContactArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ContactArea"]
+shape = SubResource("CircleShape2D_contact")

@@ -3,15 +3,19 @@ extends CharacterBody2D
 @export var target_path: NodePath
 @export_range(1.0, 1000.0, 1.0) var movement_speed: float = 90.0
 @export_range(1.0, 1000.0, 1.0) var detection_range: float = 180.0
-@export_range(0.0, 200.0, 1.0) var stopping_distance: float = 38.0
+@export_range(0.0, 200.0, 1.0) var stopping_distance: float = 32.0
+@export_range(0.0, 100.0, 1.0) var contact_damage: float = 10.0
+@export_range(0.1, 10.0, 0.1) var contact_damage_interval: float = 1.0
 @export var gold_drop_scene: PackedScene
 
 var _target: CharacterBody2D
 var _is_dead: bool = false
+var _contact_damage_cooldown: float = 0.0
 
 @onready var _health_component: Node = $HealthComponent
 @onready var _health_label: Label = $HealthLabel
 @onready var _slime_art: Node2D = $SlimeArt
+@onready var _contact_area: Area2D = $ContactArea
 
 
 func _ready() -> void:
@@ -27,7 +31,7 @@ func _ready() -> void:
 	)
 
 
-func _physics_process(_delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	if _is_dead or not is_instance_valid(_target):
 		velocity = Vector2.ZERO
 		return
@@ -39,6 +43,21 @@ func _physics_process(_delta: float) -> void:
 	else:
 		velocity = offset_to_target.normalized() * movement_speed
 	move_and_slide()
+	_apply_contact_damage(delta)
+
+
+func _apply_contact_damage(delta: float) -> void:
+	if _target not in _contact_area.get_overlapping_bodies():
+		_contact_damage_cooldown = 0.0
+		return
+
+	if _contact_damage_cooldown > 0.0:
+		_contact_damage_cooldown = maxf(_contact_damage_cooldown - delta, 0.0)
+		return
+
+	if _target.has_method("receive_damage"):
+		_target.call("receive_damage", contact_damage)
+		_contact_damage_cooldown = contact_damage_interval
 
 
 func receive_damage(amount: float) -> void:
@@ -53,6 +72,7 @@ func _on_died() -> void:
 	_is_dead = true
 	velocity = Vector2.ZERO
 	collision_layer = 0
+	_contact_area.set_deferred("monitoring", false)
 	_slime_art.modulate = Color(0.42, 0.42, 0.42, 1.0)
 	_health_label.text = "SLIME DOWN"
 	call_deferred("_spawn_gold_drop")

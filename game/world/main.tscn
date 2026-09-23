@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3]
+[gd_scene load_steps=13 format=3]
 
 [ext_resource type="Script" path="res://game/world/main.gd" id="1_world"]
 [ext_resource type="Script" path="res://game/player/player.gd" id="2_player"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" path="res://game/items/gold_pickup.tscn" id="6_gold_pickup"]
 [ext_resource type="Script" path="res://game/player/gold_component.gd" id="7_gold_component"]
 [ext_resource type="Script" path="res://game/ui/gold_counter.gd" id="8_gold_counter"]
+[ext_resource type="Script" path="res://game/ui/health_hud.gd" id="9_health_hud"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_player"]
 size = Vector2(22, 28)
@@ -102,6 +103,30 @@ theme_override_font_sizes/font_size = 18
 text = "GOLD: 0"
 script = ExtResource("8_gold_counter")
 gold_component_path = NodePath("../../Player/GoldComponent")
+
+[node name="HealthHud" type="Control" parent="CanvasLayer"]
+offset_left = 20.0
+offset_top = 48.0
+offset_right = 260.0
+offset_bottom = 96.0
+script = ExtResource("9_health_hud")
+health_component_path = NodePath("../../Player/HealthComponent")
+
+[node name="HealthLabel" type="Label" parent="CanvasLayer/HealthHud"]
+offset_right = 220.0
+offset_bottom = 22.0
+theme_override_colors/font_color = Color(0.96, 0.97, 1, 1)
+theme_override_colors/font_outline_color = Color(0.05, 0.04, 0.03, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 16
+text = "HP: 100 / 100"
+
+[node name="HealthBar" type="ProgressBar" parent="CanvasLayer/HealthHud"]
+offset_top = 24.0
+offset_right = 220.0
+offset_bottom = 44.0
+max_value = 100.0
+show_percentage = false
 
 [connection signal="died" from="Player/HealthComponent" to="Player" method="_on_health_component_died"]
 [connection signal="body_entered" from="Player/AttackArea" to="Player" method="_on_attack_area_body_entered"]

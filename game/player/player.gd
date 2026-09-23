@@ -14,6 +14,7 @@ var _hit_targets: Array[Node] = []
 @onready var _attack_shape: CollisionShape2D = $AttackArea/CollisionShape2D
 @onready var _attack_visual: Polygon2D = $AttackArea/AttackVisual
 @onready var _gold_component: Node = $GoldComponent
+@onready var _health_component: Node = $HealthComponent
 
 
 func _physics_process(_delta: float) -> void:
@@ -70,6 +71,10 @@ func _hit_target(target: Node) -> void:
 
 func collect_gold(amount: int) -> void:
 	_gold_component.call(&"add_gold", amount)
+
+
+func receive_damage(amount: float) -> void:
+	_health_component.call(&"take_damage", amount)
 
 
 func _on_health_component_died() -> void:

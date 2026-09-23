@@ -21,3 +21,15 @@ Run the gold drop and collection integration test with:
 ```powershell
 .\run-godot.ps1 --headless --script res://tests/test_gold_drops.gd
 ```
+
+Run the enemy contact-damage integration test with:
+
+```powershell
+.\run-godot.ps1 --headless --script res://tests/test_enemy_combat.gd
+```
+
+Run the health HUD integration test with:
+
+```powershell
+.\run-godot.ps1 --headless --script res://tests/test_health_hud.gd
+```

@@ -4,9 +4,9 @@ A small 2D top-down action RPG built as a controlled experiment in AI-assisted G
 
 ## Current status
 
-The main scene, player movement, player health, sword attack, training dummy, a simple chasing slime, and a slime gold drop with a collection counter are implemented. Automated scene tests cover dummy damage, slime pursuit/defeat, and gold collection; live enemy pacing, readability, coin visibility, and pickup feel still need user playtesting. Contact damage remains an upcoming combat milestone.
+The main scene, player movement, player health, sword attack, training dummy, a simple chasing slime, slime contact damage, and a slime gold drop with a collection counter are implemented. Automated scene tests cover dummy damage, slime pursuit/defeat, contact damage, and gold collection; live enemy pacing, readability, combat feel, coin visibility, and pickup feel still need user playtesting.
 
-The project launches into a placeholder dungeon room with an enclosed player body, a stationary training dummy, a chasing slime, a gold counter, and camera. Use WASD or the arrow keys to move, Space to swing the sword, then defeat the slime and walk into its coin to collect 1 gold. The dummy and slime show their own health above them; these are target readouts, not the player's health HUD. See the feature Work Records for verification details and limits.
+The project launches into a placeholder dungeon room with an enclosed player body, a stationary training dummy, a chasing slime, a player health bar, a gold counter, and camera. Use WASD or the arrow keys to move, Space to swing the sword, then defeat the slime and walk into its coin to collect 1 gold. The dummy and slime show their own health above them. See the feature Work Records for verification details and limits.
 
 ## Target V0.1
 

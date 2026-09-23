@@ -66,7 +66,8 @@ Avoid Autoloads during the early milestones. Use direct scene references, signal
 - The player owns its attack area. It detects targets on collision layer 4 and calls their public `receive_damage(amount)` method once per swing; targets own their own health.
 - Enemy scenes own enemy-local components and AI.
 - The training dummy is a static body on physics layer 4. It owns a HealthComponent and displays its health by observing `health_changed`; the player's attack calls its public `receive_damage(amount)` method.
-- The slime uses a scene-supplied NodePath to the player and direct distance-based pursuit, stops at a separation, and uses the same HealthComponent and damage-receiver contract. Contact damage is owned by the later Enemy Combat milestone.
+- The slime uses a scene-supplied NodePath to the player and direct distance-based pursuit, stopping at contact range. Its ContactArea applies tuned damage on contact with a cooldown through the player's public `receive_damage(amount)` boundary; the player delegates to its HealthComponent.
+- The health HUD connects to the player's `health_changed` signal and displays current/maximum health as text and a bar; it does not mutate health.
 - The HUD observes the player and game-state signals.
 - Pickups own their collection behavior and notify the relevant gameplay system.
 
