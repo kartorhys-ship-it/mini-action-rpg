@@ -14,10 +14,10 @@ The game is built in vertical slices. Each milestone should launch, be checked, 
 ## V0.1 — Complete playable loop
 
 1. [ ] Main scene and empty world — implementation is in place; visual inspection and manual wall-collision playtest are pending (see `features/main_scene/WORK_RECORD.md`).
-2. [ ] Player movement
-3. [ ] Player health
-4. [ ] Basic sword attack
-5. [ ] Training dummy
+2. [ ] Player movement — implementation is in place; interactive movement, collision, and camera playtest pending (see `features/player_movement/WORK_RECORD.md`).
+3. [ ] Player health — implementation is in place; damage/heal behavior and death signal checks are pending until there is a caller (see `features/player_health/WORK_RECORD.md`).
+4. [ ] Basic sword attack — implementation and headless launch checks are in place; facing, visual timing, and input need an interactive playtest (see `features/sword_attack/WORK_RECORD.md`).
+5. [ ] Training dummy — implementation and automated sword-hit check passed; user visual playtest pending (see `features/training_dummy/WORK_RECORD.md`).
 6. [ ] Slime AI
 7. [ ] Enemy combat
 8. [ ] Health HUD

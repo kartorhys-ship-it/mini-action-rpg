@@ -1,0 +1,54 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://game/enemies/training_dummy.gd" id="1_dummy"]
+[ext_resource type="Script" path="res://game/player/health_component.gd" id="2_health"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dummy"]
+size = Vector2(32, 36)
+
+[node name="TrainingDummy" type="StaticBody2D"]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("1_dummy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_dummy")
+
+[node name="DummyArt" type="Node2D" parent="."]
+
+[node name="Post" type="Polygon2D" parent="DummyArt"]
+polygon = PackedVector2Array(-4, -7, 4, -7, 4, 29, -4, 29)
+color = Color(0.34, 0.19, 0.1, 1)
+
+[node name="Base" type="Polygon2D" parent="DummyArt"]
+polygon = PackedVector2Array(-16, 21, 16, 21, 21, 28, -21, 28)
+color = Color(0.46, 0.27, 0.13, 1)
+
+[node name="Torso" type="Polygon2D" parent="DummyArt"]
+polygon = PackedVector2Array(-10, -16, 10, -16, 9, 8, -9, 8)
+color = Color(0.68, 0.39, 0.19, 1)
+
+[node name="Arms" type="Polygon2D" parent="DummyArt"]
+polygon = PackedVector2Array(-25, -12, -20, -17, 20, -17, 25, -12, 21, -7, -21, -7)
+color = Color(0.48, 0.27, 0.13, 1)
+
+[node name="Head" type="Polygon2D" parent="DummyArt"]
+position = Vector2(0, -22)
+polygon = PackedVector2Array(-7, -7, 0, -10, 7, -7, 10, 0, 7, 7, 0, 10, -7, 7, -10, 0)
+color = Color(0.78, 0.53, 0.29, 1)
+
+[node name="HealthLabel" type="Label" parent="."]
+offset_left = -70.0
+offset_top = -58.0
+offset_right = 70.0
+offset_bottom = -34.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0.05, 0.04, 0.03, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 14
+text = "DUMMY  100 / 100"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HealthComponent" type="Node" parent="."]
+script = ExtResource("2_health")

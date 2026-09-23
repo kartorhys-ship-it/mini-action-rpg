@@ -4,26 +4,30 @@ Outcome: Move the player around the existing dungeon with keyboard controls whil
 
 Mode / rigor: Feature change, standard. It introduces user-visible gameplay behavior, input configuration, physics movement, and interaction with existing collision boundaries.
 
-Current behavior: The player is a `CharacterBody2D` in `game/world/main.tscn`, with collision mask 1; dungeon walls are `StaticBody2D` on layer 1. No movement script or input map actions exist yet.
+Current behavior before this change: The player was a stationary `CharacterBody2D` in `game/world/main.tscn`, with collision mask 1; dungeon walls are `StaticBody2D` on layer 1. No movement script or input map actions existed.
 
 Scope and boundaries: Add keyboard movement to the existing player, preserve its placeholder and camera, normalize diagonal input, and use the existing walls. Health, combat, enemies, items, and HUD are excluded.
 
 Acceptance: See [SPEC.md](SPEC.md) and [ACCEPTANCE.md](ACCEPTANCE.md).
 
-Implementation: Not started. The specifications exist; no movement code has been added.
+Implementation: Complete in [player.gd](../../game/player/player.gd), attached to the player in [main.tscn](../../game/world/main.tscn); keyboard actions are configured in [project.godot](../../project.godot). The speed is exported and defaults to 220 pixels per second. `Input.get_vector()` normalizes the four action strengths, then velocity is assigned directly and `move_and_slide()` handles physics collision.
 
 Verification:
 
 | Criterion | Check and conditions | Result | Evidence / limitation |
 |---|---|---|---|
-| Keyboard movement, eight directions, normalized speed, stop behavior | Play the scene with keyboard input and compare cardinal/diagonal travel over equal time | not run | Implementation has not started. |
-| Wall collision and camera behavior | Move into each wall and observe player/camera framing | not run | Implementation has not started; visual playtest is required. |
-| No startup parser/runtime errors | Run the project with Godot after implementation | not run | Implementation has not started. |
+| WASD movement | User playtest, 2026-09-24 | passed | User confirmed WASD works. |
+| Up/down arrow movement | User playtest, 2026-09-24 | passed | User confirmed Up and Down arrows work. |
+| Left/right arrow movement | User playtest after repair, 2026-09-24 | passed | Initial mappings were `4194311` (Insert) and `4194313` (Pause). They were corrected to Godot's `4194319` (Left) and `4194321` (Right); user confirmed the repair works. |
+| Diagonal speed and immediate stop | Interactive input playtest | not run | Not reported yet. |
+| Wall collision and camera behavior | Move into each wall and observe player/camera framing | not run | Runtime collision and camera behavior still need a manual playtest. |
+| No startup parser/runtime errors | Godot 4.7.2 `--headless --editor --quit`, then `--headless --quit-after 120` | passed | Both commands exited 0. Godot emitted a non-blocking Windows root certificate-store warning and loaded its built-in CA bundle. |
+| No features outside player movement were added | Inspect the current change scope | passed | Changes are limited to player movement code/configuration, its spec/record, and project status documentation. |
 
-Human explanation: pending. After implementation, explain input-to-velocity-to-physics flow, wall collision ownership, and the limitation of available checks.
+Human explanation: pending. Walk through input-to-velocity-to-physics flow, wall collision ownership, and the limit of headless launch evidence.
 
-Limitations and unknowns: The exact movement speed is intentionally left for implementation as a named, exported value and should be playtested. Camera framing under window resizing is not specified by the current feature contract.
+Limitations and unknowns: Initial speed is 220 pixels per second and remains subject to feel-based playtesting. Camera framing under window resizing is outside this feature.
 
-Statuses: Implementation not started; verification pending; work open; release not requested.
+Statuses: Implementation complete; verification inconclusive overall; work open; release not requested.
 
-Next action and owner: Implement the bounded movement feature after reviewing the plan — assistant, with user playtest.
+Next action and owner: Play the scene and try WASD and arrow keys, diagonals, release-to-stop, all four walls, and camera follow — user playtest.

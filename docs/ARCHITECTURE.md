@@ -10,11 +10,12 @@ The architecture is deliberately modest for V0.1. It should be easy to understan
 
 ```text
 GAME
-├── Player
-│   ├── MovementComponent
-│   ├── HealthComponent
-│   └── CombatComponent
+├── Player (`CharacterBody2D`)
+│   ├── Movement behavior (`game/player/player.gd`, implemented)
+│   ├── HealthComponent (`game/player/health_component.gd`, implemented)
+│   └── Sword attack behavior (`game/player/player.gd`, implemented)
 ├── Enemies
+│   ├── TrainingDummy (`game/enemies/training_dummy.tscn`, stationary combat test target)
 │   ├── HealthComponent
 │   ├── MovementComponent
 │   ├── CombatComponent
@@ -59,8 +60,11 @@ Avoid Autoloads during the early milestones. Use direct scene references, signal
 ## Scene ownership
 
 - The main scene owns the current level and top-level game flow.
-- The player scene owns player-local components.
+- The player node owns player-local behavior. Keep a simple behavior on its script until a real reuse need justifies extracting a component.
+- The player owns its HealthComponent; health values stay in that component and interested systems observe its signals.
+- The player owns its attack area. It detects targets on collision layer 4 and calls their public `receive_damage(amount)` method once per swing; targets own their own health.
 - Enemy scenes own enemy-local components and AI.
+- The training dummy is a static body on physics layer 4. It owns a HealthComponent and displays its health by observing `health_changed`; the player's attack calls its public `receive_damage(amount)` method.
 - The HUD observes the player and game-state signals.
 - Pickups own their collection behavior and notify the relevant gameplay system.
 

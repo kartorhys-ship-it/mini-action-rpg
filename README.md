@@ -4,9 +4,9 @@ A small 2D top-down action RPG built as a controlled experiment in AI-assisted G
 
 ## Current status
 
-Milestone 1 implementation is in place. Engine launch was checked; visual inspection and manual wall-collision playtest remain pending.
+The main scene, player movement, player health, sword attack, and training dummy are implemented. The automated scene test verifies one sword hit reduces the dummy from 100 to 75 health; live readability and attack feel still need user playtesting. Slime AI is the next milestone.
 
-The project launches into a placeholder dungeon room with an enclosed player body and camera. See [the main-scene Work Record](features/main_scene/WORK_RECORD.md) for the evidence and its limits. Player movement is the next implementation slice; its scope and current status are in [features/player_movement/](features/player_movement/).
+The project launches into a placeholder dungeon room with an enclosed player body, a stationary training dummy, and camera. Use WASD or the arrow keys to move, and Space to swing the sword. The dummy shows its own health above it; this is a combat test readout, not the player's HUD. See the feature Work Records for verification details and limits.
 
 ## Target V0.1
 

@@ -10,10 +10,11 @@ Let the player move around the existing dungeon using keyboard input while respe
 - Bind those actions to A/D/W/S and the corresponding arrow keys.
 - Support movement in eight directions.
 - Normalize diagonal input so diagonal movement is not faster.
-- Use a fixed, exported movement speed on the player script.
+- Use an exported movement speed on the player script, initially 220 pixels per second.
+- Set velocity directly from input each physics frame; use no acceleration or inertia.
 - Stop immediately when there is no movement input.
 - Move through `CharacterBody2D` physics so walls block the player.
-- Keep the current camera behavior and player placeholder.
+- Keep the camera centered on the player and preserve the player placeholder. The whole room does not need to remain visible while the camera follows.
 
 ## Ownership
 
