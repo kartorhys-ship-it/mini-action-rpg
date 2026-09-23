@@ -30,17 +30,25 @@ Do not add quests, crafting, procedural generation, multiplayer, skill trees, sh
 
 ## Development workflow
 
+Follow the project adaptation of the Explainable Engineering Method in `docs/ENGINEERING_METHOD.md`. Keep work proportionate to its risk and use the existing feature folders and records; do not add documents that repeat the same facts.
+
 Implement one feature at a time using this sequence:
 
-1. Define the feature.
-2. Write or update its specification and acceptance criteria under `features/`.
-3. Inspect the existing architecture before proposing changes.
-4. Present an implementation plan for review.
-5. Implement only the approved feature scope.
-6. Run Godot checks and relevant tests.
-7. Playtest the feature manually.
-8. Review the Git diff.
-9. Commit one logical change with a descriptive message.
+1. Frame the outcome, current behavior, boundaries, assumptions, and non-goals.
+2. Write or update the feature specification and observable acceptance criteria under `features/`.
+3. Choose a rigor level and briefly explain why.
+4. Inspect the existing scenes, scripts, project settings, and affected consumers.
+5. Propose the bounded implementation plan when review is needed.
+6. Implement only the authorized feature scope.
+7. Run checks that support the acceptance claims; record the actual result and conditions in the feature `WORK_RECORD.md`.
+8. Playtest user-visible game behavior when possible; keep an unavailable or unrun check visibly pending.
+9. Explain the relevant scene/script path, important decisions, evidence limits, and first debugging step. For this learning project, do not mark the user explanation complete until the user demonstrates understanding in a walkthrough.
+10. Review the Git diff and update linked records affected by the change.
+11. Commit one logical change only when authorized and appropriate.
+
+Use `features/WORK_RECORD_TEMPLATE.md` for a new work record. Keep requirement/expected behavior in `SPEC.md`, criteria in `ACCEPTANCE.md`, and observed results in `WORK_RECORD.md`. A criterion is not passed just because it has been implemented. A successful command does not prove visual or gameplay behavior unless it observes that behavior.
+
+Keep these statuses separate in reports and records: implementation, verification, human explanation, work disposition, and release. Release is not implied by implementation or verification.
 
 Do not ask an AI agent to “build the whole game” in one task. Bound every task by a feature and its acceptance criteria.
 
@@ -91,6 +99,13 @@ How to test:
 
 Known limitations:
 - ...
+
+Statuses:
+- Implementation: ...
+- Verification: ...
+- Human explanation: ...
+- Work disposition: ...
+- Release: ...
 
 No unrelated files modified.
 ```

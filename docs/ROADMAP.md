@@ -13,7 +13,7 @@ The game is built in vertical slices. Each milestone should launch, be checked, 
 
 ## V0.1 — Complete playable loop
 
-1. [ ] Main scene and empty world
+1. [ ] Main scene and empty world — implementation is in place; visual inspection and manual wall-collision playtest are pending (see `features/main_scene/WORK_RECORD.md`).
 2. [ ] Player movement
 3. [ ] Player health
 4. [ ] Basic sword attack
