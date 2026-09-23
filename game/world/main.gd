@@ -12,11 +12,14 @@ const DOORWAY_COLOR: Color = Color(0.62, 0.53, 0.31, 1.0)
 const GRID_SPACING: float = 48.0
 
 @onready var _boss_health_component: Node = $BossSlime/HealthComponent
+@onready var _player_health_component: Node = $Player/HealthComponent
+@onready var _game_over_label: Label = $CanvasLayer/GameOverLabel
 @onready var _victory_label: Label = $CanvasLayer/VictoryLabel
 
 
 func _ready() -> void:
 	_boss_health_component.connect(&"died", _on_boss_defeated)
+	_player_health_component.connect(&"died", _on_player_defeated)
 
 
 func _draw() -> void:
@@ -54,4 +57,9 @@ func _draw() -> void:
 
 func _on_boss_defeated() -> void:
 	_victory_label.visible = true
+	get_tree().paused = true
+
+
+func _on_player_defeated() -> void:
+	_game_over_label.visible = true
 	get_tree().paused = true

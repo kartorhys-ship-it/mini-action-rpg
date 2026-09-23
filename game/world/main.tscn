@@ -174,5 +174,19 @@ text = "YOU WIN"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="GameOverLabel" type="Label" parent="CanvasLayer"]
+visible = false
+offset_left = 260.0
+offset_top = 218.0
+offset_right = 700.0
+offset_bottom = 286.0
+theme_override_colors/font_color = Color(0.98, 0.28, 0.22, 1)
+theme_override_colors/font_outline_color = Color(0.05, 0.04, 0.03, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 48
+text = "GAME OVER"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [connection signal="died" from="Player/HealthComponent" to="Player" method="_on_health_component_died"]
 [connection signal="body_entered" from="Player/AttackArea" to="Player" method="_on_attack_area_body_entered"]

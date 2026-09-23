@@ -23,10 +23,10 @@ The game is built in vertical slices. Each milestone should launch, be checked, 
 8. [ ] Health HUD — implementation and integration test pass; graphical visibility check pending (see `features/health_hud/WORK_RECORD.md`).
 9. [ ] Gold drops and gold counter — implementation and integration test pass; graphical playtest pending (see `features/gold_drops/WORK_RECORD.md`).
 10. [ ] Health potion — implementation and integration tests pass; graphical visibility/pickup playtest pending (see `features/health_potion/WORK_RECORD.md`).
-11. [ ] Dungeon layout — implementation and movement checks in progress (see `features/dungeon_layout/WORK_RECORD.md`).
-12. [ ] Boss — implementation and automated encounter checks pass; graphical boss fight pending (see `features/boss/WORK_RECORD.md`).
-13. [ ] Game-over flow
-14. [ ] Victory flow
+11. [x] Dungeon layout — implementation, automated checks, and user movement playtest passed (see `features/dungeon_layout/WORK_RECORD.md`).
+12. [x] Boss — implementation, automated checks, and user boss-fight playtest passed (see `features/boss/WORK_RECORD.md`).
+13. [x] Game-over flow — automated checks and user graphical playtest passed (see `features/game_over/WORK_RECORD.md`).
+14. [x] Victory flow — boss defeat displays `YOU WIN` and pauses gameplay (see `features/boss/WORK_RECORD.md`).
 
 ## V0.2 — Feedback polish
 

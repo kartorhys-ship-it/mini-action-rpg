@@ -51,3 +51,9 @@ Run the boss encounter integration test with:
 ```powershell
 .\run-godot.ps1 --headless --script res://tests/test_boss.gd
 ```
+
+Run the player game-over integration test with:
+
+```powershell
+.\run-godot.ps1 --headless --script res://tests/test_game_over.gd
+```
