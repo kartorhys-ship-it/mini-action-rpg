@@ -1,0 +1,44 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://game/items/health_potion.gd" id="1_potion"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_potion"]
+radius = 16.0
+
+[node name="HealthPotion" type="Area2D"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_potion")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_potion")
+
+[node name="Bottle" type="Polygon2D" parent="."]
+polygon = PackedVector2Array(-4, -13, 4, -13, 4, -7, 9, -3, 12, 2, 12, 10, 9, 14, -9, 14, -12, 10, -12, 2, -9, -3, -4, -7)
+color = Color(0.91, 0.2, 0.36, 1)
+
+[node name="Liquid" type="Polygon2D" parent="."]
+polygon = PackedVector2Array(-9, 3, 9, 3, 9, 9, 7, 11, -7, 11, -9, 9)
+color = Color(1, 0.53, 0.61, 1)
+
+[node name="Cork" type="Polygon2D" parent="."]
+polygon = PackedVector2Array(-4, -16, 4, -16, 4, -12, -4, -12)
+color = Color(0.72, 0.48, 0.24, 1)
+
+[node name="Shine" type="Polygon2D" parent="."]
+polygon = PackedVector2Array(-7, 2, -4, -1, -4, 5, -7, 7)
+color = Color(1, 0.9, 0.88, 0.85)
+
+[node name="PickupLabel" type="Label" parent="."]
+offset_left = -42.0
+offset_top = -43.0
+offset_right = 42.0
+offset_bottom = -23.0
+theme_override_colors/font_color = Color(1, 0.9, 0.94, 1)
+theme_override_colors/font_outline_color = Color(0.05, 0.04, 0.03, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 13
+text = "HEAL +30"
+horizontal_alignment = 1
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

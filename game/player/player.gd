@@ -77,6 +77,13 @@ func receive_damage(amount: float) -> void:
 	_health_component.call(&"take_damage", amount)
 
 
+func receive_healing(amount: float) -> bool:
+	var previous_health: float = float(_health_component.get("current_health"))
+	_health_component.call(&"heal", amount)
+	var current_health: float = float(_health_component.get("current_health"))
+	return current_health > previous_health
+
+
 func _on_health_component_died() -> void:
 	velocity = Vector2.ZERO
 	set_physics_process(false)

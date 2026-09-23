@@ -33,3 +33,9 @@ Run the health HUD integration test with:
 ```powershell
 .\run-godot.ps1 --headless --script res://tests/test_health_hud.gd
 ```
+
+Run the health potion integration test with:
+
+```powershell
+.\run-godot.ps1 --headless --script res://tests/test_health_potion.gd
+```
